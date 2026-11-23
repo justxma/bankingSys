@@ -7,6 +7,7 @@
 #define CONFIG_KW "CFMT"
 #define FILE_PATH "dataBase/config.meta"
 #define BATABASE_DIR "dataBase"
+#define DATABASE "dataBase/dataBase.txt"
 #pragma pack(push, 1)
 
 typedef struct {

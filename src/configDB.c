@@ -77,11 +77,16 @@ short int loadConfigFile(dbConfig *config)
 void verifyFile(dbConfig *fileConfig)
 {
 	FILE *file = fopen(FILE_PATH, "rb");
-	if (file == NULL) {
-		printf(BOLD_RED
-		       "Error occured when opening config file!\n" RESET);
-		return;
-	}
+	// if (file == NULL) {
+	// 	printf(BOLD_RED
+	// 	       "Error occured when opening config file!\n" RESET);
+	// 	return;
+	// }
+
+	/*
+		Creating the minimal set up for data base
+	*/
+
 	if (file == NULL)
 	{
 		printf(BOLD_RED "File was not found!\nChecking if directory is directory exists : " RESET);
@@ -103,6 +108,22 @@ void verifyFile(dbConfig *fileConfig)
 			exit(EXIT_FAILURE);
 		}
 		createConfigFile(fileConfig);
+
+		fclose(file);
+
+		printf(BOLD_GREEN "Cheking data base file...\n" RESET);
+		file = fopen(DATABASE , "rb");
+
+		if(!file){
+			printf(BOLD_RED "Main data base file was not created!\n" RESET);
+			file = fopen(DATABASE , "wb");
+			printf(BOLD_RED "Creating the main data base file...\n" RESET);
+			if(!file){
+				printf(BOLD_RED "Error ocurred when creating main data base file\n" RESET);
+			}
+			printf(BOLD_GREEN "dataBase.txt file was created!\n" RESET);
+		}
+		fclose(file);
 	}
 	char temp;
 	temp = fgetc(file);

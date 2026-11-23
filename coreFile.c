@@ -52,7 +52,7 @@ void adminUIFunction(dbConfig *config, userAccPtr *hashTable,
 }
 
 void displayBankingLogo(){
-  printf(BOLD_GREEN "\n     ____              _    _                             _                 \n    | __ )  __ _ _ __ | | _(_)_ __   __ _   ___ _   _ ___| |_ ___ _ __ ___  \n    |  _ \\ / _` | '_ \\| |/ / | '_ \\ / _` | / __| | | / __| __/ _ \\ '_ ` _ \\ \n    | |_) | (_| | | | |   <| | | | | (_| | \\__ \\ |_| \\__ \\ ||  __/ | | | | |\n    |____/ \\__,_|_| |_|_|\\_\\_|_| |_|\\__, | |___/\\__, |___/\\__\\___|_| |_| |_|\n                                    |___/       |___/\n" RESET);
+  printf(BOLD_GREEN "\n     ____              _    _                             _                 \n    | __ )  __ _ _ __ | | _(_)_ __   __ _   ___ _   _ ___| |_ ___ _ __ ___  \n    |  _ \\ / _` | '_ \\| |/ / | '_ \\ / _` | / __| | | / __| __/ _ \\ '_ ` _ \\ \n    | |_) | (_| | | | |   <| | | | | (_| | \\__ \\ |_| \\__ \\ ||  __/ | | | | |\n    |____/ \\__,_|_| |_|_|\\_\\_|_| |_|\\__, | |___/\\__, |___/\\__\\___|_| |_| |_|\n                                    |___/       |___/\n\n" RESET);
   // sleep(1);
   // printf(BOLD "\n\nBanking Login...\n\n" RESET);
 }
@@ -61,7 +61,6 @@ void displayBankingLogo(){
 int main(void)
 {
 	displayBankingLogo();
-	// hash table
 	userAccPtr *hashTable =
 		malloc(sizeof(userAccPtr) * INITIAL_BANK_CAPACITY);
 	if (!hashTable) {
@@ -90,6 +89,6 @@ int main(void)
 	}
 	// printDataBase(hashTable);
 	// saveConfig(&config);
-
+	free(hashTable);
 	return 0;
 }
