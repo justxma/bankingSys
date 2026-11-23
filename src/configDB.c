@@ -7,8 +7,6 @@
 #include <string.h>
 #include <time.h>
 #include <errno.h>
-#include <sys/types.h>
-#include <stdlib.h>
 #include <sys/stat.h>
 
 void saveConfig(dbConfig *config)
