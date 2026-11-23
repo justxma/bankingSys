@@ -3,12 +3,12 @@
 
 #define SHIFT 7
 
+#if SHIFT > 26
+#warning "Shift size is too large"
+#endif
+
 #include <stdio.h>
 
-char shiftLetterForward(char letter);
-char shiftNumberForward(char number);
-char shiftLetterBackwards(char letter);
-char shiftDigitBackwards(char number);
 void cryptString(char **string);
 void decryptString(char **string);
 

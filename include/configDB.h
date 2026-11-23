@@ -2,7 +2,7 @@
 #define CONFIG_DATABASE_H
 
 #include <stdint.h>
-#include <stdio.h>
+#include <time.h>
 
 #define CONFIG_KW "CFMT"
 #define FILE_PATH "dataBase/config.meta"
@@ -25,7 +25,7 @@ void	  saveConfig(dbConfig *config);
 short int createConfigFile(dbConfig *config);
 short int loadConfigFile(dbConfig *config);
 void	  verifyFile(dbConfig *fileConfig);
-void	  formatTime(__uint64_t timestamp, char *buffer, size_t bufferSize);
+void	  formatTime(uint64_t timestamp, char *buffer, size_t bufferSize);
 void	  displayConfig(dbConfig *config);
 
 #endif

@@ -3,6 +3,7 @@
 #include "../include/colors.h"
 #include "../include/cryptString.h" // for #define SHIFT 7
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <errno.h>
@@ -98,7 +99,7 @@ void verifyFile(dbConfig *fileConfig)
 		
 		file = fopen(FILE_PATH , "wb");
 
-		if(!file){
+		if (!file) {
 			perror("Error ocurred when creating file.\n");
 			exit(1);
 		}

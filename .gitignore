@@ -6,3 +6,6 @@ testing/
 *.exe
 docs/
 personalNotes.md
+test
+test.c
+.vscode
