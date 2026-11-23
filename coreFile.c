@@ -44,8 +44,11 @@ void clientUIFunction(userAccPtr *hashTable, int *tableSize)
 void adminUIFunction(dbConfig *config, userAccPtr *hashTable,
 		     int *hashTableSize)
 {
-	printf("\nYou're in the admin section of the program!\n");
+	// printf("\nYou're in the admin section of the program!\n");
 	loadDataBase(config, hashTable, hashTableSize);
+  if(checkClient(hashTable , *hashTableSize) == -1){
+    printf(BOLD_RED "Table is empty!\n" RESET);
+  }
 }
 
 void displayBankingLogo(){
@@ -54,24 +57,6 @@ void displayBankingLogo(){
   // printf(BOLD "\n\nBanking Login...\n\n" RESET);
 }
 
-// void printDataBase(userAccPtr *hashTable){
-//   // printf(BOLD_GREEN "Data base from hash table(Cryptated)\n" RESET);
-//   // for(int i = 0 ; i < tableSize ; ++i){
-//   //   printf("ID : %d  CNP : %ld  IBAN : %s  Surname : %s  Name : %s  Password : %s  Sold : %.2lf\n" , hashTable[i]->ID , hashTable[i]->CNP , hashTable[i]->IBAN , hashTable[i]->surname , hashTable[i]->name , hashTable[i]->password , hashTable[i]->sold);
-//   // }
-//   printf(BOLD_GREEN "\n\nData base from hash table(Decryptated)\n" RESET);
-//   char *buffer = malloc(sizeof(char) * MAX_BUFFER_SIZE);
-//   for (int i = 0; i < 10; ++i)
-//   {
-//     sprintf(buffer, "%u %ld %s %s %s %s %ld", hashTable[i]->ID, hashTable[i]->CNP, hashTable[i]->IBAN, hashTable[i]->surname, hashTable[i]->name, hashTable[i]->password, hashTable[i]->sold);
-//     printf("%s\n" , buffer);
-//     // printf("ID : %d  CNP : %ld  IBAN : %s  Surname : %s  Name : %s  Password : %s  Sold : %.2lf\n", hashTable[i]->ID, hashTable[i]->CNP, hashTable[i]->IBAN, hashTable[i]->surname, hashTable[i]->name, hashTable[i]->password, hashTable[i]->sold);
-//     cryptString(&buffer);
-//     printf("%s\n" , buffer);
-//     decryptString(&buffer);
-//     printf("%s\n\n" , buffer);
-//   }
-// }
 
 int main(void)
 {
@@ -90,7 +75,7 @@ int main(void)
 	dbConfig config;
 	verifyFile(&config);
 
-	usleep(500000);
+	sleep(1);
 	printf("\nLogin:\n Press 1 for client servicies\n Press 2 for admin servicies\nOption : ");
 
 	char option;

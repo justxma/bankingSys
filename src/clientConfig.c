@@ -14,6 +14,11 @@ void loadDataBase(dbConfig *dataBaseConfig, userAccPtr *hashTable,
 		  int *tableSize)
 {
 	FILE *dataBase = fopen(DATABASE_FILE, "r");
+	if (!dataBase) {
+		printf(BOLD_RED
+		       "Error occurred when openning the dataBase file!\n" RESET);
+		exit(EXIT_FAILURE);
+	}
 	if (!dataBase)
 	{
 		printf(BOLD_RED "dataBase file not found!\n" BOLD_GREEN "Creating dataBase file..." RESET);
@@ -74,17 +79,30 @@ void loadDataBase(dbConfig *dataBaseConfig, userAccPtr *hashTable,
 	fclose(dataBase);
 }
 
-short int checkClient(userAccPtr *hashTable, int size)
-{
-	if (hashTable == NULL) {
-		perror("Table is null!\n");
+short int checkClient(userAccPtr *hashTable, int tableSize){
+	if(hashTable == NULL){
+		return -1; 
+	} else if(tableSize == 0){
 		return -1;
 	}
-
-	if (size == 0) {
-		printf("Table is empty!\n");
-		return -1;
-	}
-
-	return 1;
+	return 0;
 }
+
+// void printDataBase(userAccPtr *hashTable){
+//   // printf(BOLD_GREEN "Data base from hash table(Cryptated)\n" RESET);
+//   // for(int i = 0 ; i < tableSize ; ++i){
+//   //   printf("ID : %d  CNP : %ld  IBAN : %s  Surname : %s  Name : %s  Password : %s  Sold : %.2lf\n" , hashTable[i]->ID , hashTable[i]->CNP , hashTable[i]->IBAN , hashTable[i]->surname , hashTable[i]->name , hashTable[i]->password , hashTable[i]->sold);
+//   // }
+//   printf(BOLD_GREEN "\n\nData base from hash table(Decryptated)\n" RESET);
+//   char *buffer = malloc(sizeof(char) * MAX_BUFFER_SIZE);
+//   for (int i = 0; i < 10; ++i)
+//   {
+//     sprintf(buffer, "%u %ld %s %s %s %s %ld", hashTable[i]->ID, hashTable[i]->CNP, hashTable[i]->IBAN, hashTable[i]->surname, hashTable[i]->name, hashTable[i]->password, hashTable[i]->sold);
+//     printf("%s\n" , buffer);
+//     // printf("ID : %d  CNP : %ld  IBAN : %s  Surname : %s  Name : %s  Password : %s  Sold : %.2lf\n", hashTable[i]->ID, hashTable[i]->CNP, hashTable[i]->IBAN, hashTable[i]->surname, hashTable[i]->name, hashTable[i]->password, hashTable[i]->sold);
+//     cryptString(&buffer);
+//     printf("%s\n" , buffer);
+//     decryptString(&buffer);
+//     printf("%s\n\n" , buffer);
+//   }
+// }

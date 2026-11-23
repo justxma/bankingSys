@@ -8,6 +8,7 @@
 #include <time.h>
 #include <errno.h>
 #include <sys/types.h>
+#include <stdlib.h>
 #include <sys/stat.h>
 
 void saveConfig(dbConfig *config)
@@ -101,7 +102,7 @@ void verifyFile(dbConfig *fileConfig)
 
 		if (!file) {
 			perror("Error ocurred when creating file.\n");
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 		createConfigFile(fileConfig);
 	}
